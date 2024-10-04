@@ -21,6 +21,8 @@ export default function Navigation() {
                 <Container fluid>
                     {/* Navbar.Brand component for the home link */}
                     <Navbar.Brand href='/'>Home</Navbar.Brand>
+                    {/* Navbar.Toggle component for the collapsible button */}
+                    <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                     {/* Navbar.Collapse component to handle responsive behavior */}
                     <Navbar.Collapse id='responsive-navbar-nav'>
                         {/* Nav component to align links to the right */}

@@ -16,6 +16,10 @@ def login():
 
         if user and bcrypt.check_password_hash(user['password'], data['password']):  # Check if user exists and password matches
             return jsonify({'message': 'Login successful'}), 200  # Return success message with status code 200
+        else:
+            return jsonify({'message': 'Invalid username or password'}), 401  # Return failure message with status code 401
+    else:
+        return jsonify({'message': 'Method not allowed'}), 405  # Return method not allowed message with status code 405
 
 @app.route('/register', methods=['GET', 'POST'])  # Define the register route with GET and POST methods
 def register():
@@ -27,9 +31,13 @@ def register():
             'password': bcrypt.generate_password_hash(data['password']).decode('utf-8')
         }
 
-        if users.find_one({'username': data['username']} == None):  # Check if the username is not already taken
+        if users.find_one({'username': data['username']}) is None:  # Check if the username is not already taken
             users.insert_one(new_user)  # Insert the new user into the database
             return jsonify({'message': 'User created'}), 200  # Return success message with status code 200
+        else:
+            return jsonify({'message': 'Username already exists'}), 409  # Return conflict message with status code 409
+    else:
+        return jsonify({'message': 'Method not allowed'}), 405  # Return method not allowed message with status code 405
 
 if __name__ == '__main__':  # Check if the script is run directly (not imported)
     app.run(debug=True, port=4000)  # Run the Flask app in debug mode on port 4000

@@ -34,15 +34,17 @@ export default function Login() {
 
     // Returning the JSX for the Login component
     return(
-        <div>
+        <div className='login-body'>
             <nav>
                 <Navigation /> {/* Rendering the Navigation component */}
             </nav>
-            <form onSubmit={handleLogin} className='login-form'> {/* Form submission handled by handleLogin */}
-                <input required type='username' placeholder='Username' onChange={(e) => setUsername(e.target.value)} /> {/* Input for username */}
-                <input required type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)} /> {/* Input for password */}
-                <button type='submit'>Login</button> {/* Submit button */}
-            </form>
+            <div className='login-form d-flex flex-row justify-content-center'>
+                <form onSubmit={handleLogin} className='d-flex flex-column align-items-center'> {/* Form submission handled by handleLogin */}
+                    <input className="login-input" required type='username' placeholder='Username' onChange={(e) => setUsername(e.target.value)} /> {/* Input for username */}
+                    <input className="login-input" required type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)} /> {/* Input for password */}
+                    <button className="login-button" type='submit'>Login</button> {/* Submit button */}
+                </form>
+            </div>
             <NotificationContainer /> {/* Container for notifications */}
         </div>
     )

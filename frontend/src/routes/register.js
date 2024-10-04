@@ -35,15 +35,17 @@ export default function Registration() { // Define and export the Registration c
     }
 
     return( // Return the JSX to render the component
-        <div> 
+        <div className='register-body'> 
             <nav> 
                 <Navigation /> {/* Render the Navigation component */}
             </nav>
-            <form onSubmit={handleRegistration}> {/* Attach handleRegistration function to form submission */}
-                <input required type='username' placeholder='Username' onChange={(e) => setUsername(e.target.value)} /> {/* Input field for username */}
-                <input required type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)} /> {/* Input field for password */}
-                <button type='submit'>Login</button> {/* Submit button */}
-            </form>
+            <div className='login-form d-flex flex-row justify-content-center'>
+                <form onSubmit={handleRegistration} className='d-flex flex-column align-items-center'> {/* Attach handleRegistration function to form submission */}
+                    <input className="login-input" required type='username' placeholder='Username' onChange={(e) => setUsername(e.target.value)} /> {/* Input field for username */}
+                    <input className="login-input" required type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)} /> {/* Input field for password */}
+                    <button className="login-button" type='submit'>Register</button> {/* Submit button */}
+                </form>
+            </div>
             <NotificationContainer /> {/* Render the NotificationContainer for displaying notifications */}
         </div>
     )
