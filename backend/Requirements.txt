@@ -1,0 +1,9 @@
+Flask
+flask
+pymongo[srv]
+Flask-PyMongo
+werkzeug
+pymongo
+MarkupSafe
+Pillow
+matplotlib
