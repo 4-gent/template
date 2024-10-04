@@ -1,0 +1,49 @@
+// Importing necessary modules and components
+import React, { useState } from 'react' // Importing React and useState hook
+import axios from 'axios' // Importing axios for making HTTP requests
+import { NotificationManager, NotificationContainer } from 'react-notifications' // Importing notification components
+import 'react-notifications/lib/notifications.css' // Importing notification styles
+import '../styles/login.css' // Importing custom styles for the login component
+import Navigation from '../components/navbar' // Importing Navigation component
+
+// Defining the Login component
+export default function Login() {
+    // Defining state variables for username and password
+    const [username, setUsername] = useState('') // State for username
+    const [password, setPassword] = useState('') // State for password
+
+    // Function to handle login form submission
+    const handleLogin = async(e) => {
+        e.preventDefault() // Preventing default form submission behavior
+        const data = {
+            username: username, // Setting username in data object
+            password: password // Setting password in data object
+        }
+        try{
+            // Making a POST request to the login endpoint
+            const response = await axios.post('http://localhost:4000/login', data)
+            if (response.status === 200) // Checking if the response status is 200 (OK)
+                NotificationManager.success('Login successful!') // Displaying success notification
+            else
+                NotificationManager.error('Login failed, please try again!') // Displaying error notification
+                console.log('Login failed') // Logging login failure
+        } catch (e){
+            console.log(e) // Logging any errors that occur during the request
+        }
+    }
+
+    // Returning the JSX for the Login component
+    return(
+        <div>
+            <nav>
+                <Navigation /> {/* Rendering the Navigation component */}
+            </nav>
+            <form onSubmit={handleLogin} className='login-form'> {/* Form submission handled by handleLogin */}
+                <input required type='username' placeholder='Username' onChange={(e) => setUsername(e.target.value)} /> {/* Input for username */}
+                <input required type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)} /> {/* Input for password */}
+                <button type='submit'>Login</button> {/* Submit button */}
+            </form>
+            <NotificationContainer /> {/* Container for notifications */}
+        </div>
+    )
+}

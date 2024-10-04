@@ -80,7 +80,9 @@ frontend
 To conform with future Python LLM implementation, the backend development is done with Python Flask, which communicates with MongoDB Atlas as a non-relational database cloud solution.
 
 - `main.py` will be the main backend code (keeping fewer Python files makes it easier to communicate with the frontend).
-- `models.py` will hold the schemas for SQL tables.
+- `connect.py` will handle connection to your mongodb atlas instance.
+
+**Note:** To connect to mongodb atlas, make sure you create your valid .env file that contains all relevant api keys, URIs, etc.. The connect.py will already connect to an .env, however, keep in mind this private repo does not include an existing .env for security reasons. Make your own .env and ensure your environment variables align with your code.
 
 **Note:** If you mess up a schema on the backend and need to restart the whole database, let Mj know for backend purposes.
 
