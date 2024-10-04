@@ -8,7 +8,7 @@ CORS(app, origins=['http://localhost:3000'])  # Enable CORS for the specified or
 
 bcrypt = Bcrypt(app)  # Initialize Bcrypt with the Flask app
 
-@app.route('/login', methods=['GET', 'POST'])  # Define the login route with GET and POST methods
+@app.route('/login', methods=['POST'])  # Define the login route with GET and POST methods
 def login():
     if request.method == 'POST':  # Check if the request method is POST
         data = request.get_json()  # Get JSON data from the request
@@ -21,7 +21,7 @@ def login():
     else:
         return jsonify({'message': 'Method not allowed'}), 405  # Return method not allowed message with status code 405
 
-@app.route('/register', methods=['GET', 'POST'])  # Define the register route with GET and POST methods
+@app.route('/register', methods=['POST'])  # Define the register route with GET and POST methods
 def register():
     if request.method == "POST":  # Check if the request method is POST
         data = request.get_json()  # Get JSON data from the request

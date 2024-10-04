@@ -29,7 +29,17 @@ export default function Registration() { // Define and export the Registration c
             }
                 
         } catch (e){ // Catch any errors that occur during the request
-            console.log(e) // Log the error to the console
+            if (e.response){
+                if (e.response.status === 409) // Check if the response status is 409 (Conflict)
+                    NotificationManager.error('User already exists!') // Show error notification if username already exists
+                else
+                    NotificationManager.error('An error occurred, please try again later!') // Show error notification if an error occurred
+            } else if (e.request) {
+                NotificationManager.error('Server error, please try again later!') // Show error notification if there is a server error
+            } else {
+                console.log(e) // Log the error to the console
+                NotificationManager.error('An error occurred, please try again later!') // Show error notification if an error occurred
+            }
         }
 
     }

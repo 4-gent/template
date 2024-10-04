@@ -22,12 +22,16 @@ export default function Login() {
         try{
             // Making a POST request to the login endpoint
             const response = await axios.post('http://localhost:4000/login', data)
-            if (response.status === 200) // Checking if the response status is 200 (OK)
-                NotificationManager.success('Login successful!') // Displaying success notification
-            else
-                NotificationManager.error('Login failed, please try again!') // Displaying error notification
-                console.log('Login failed') // Logging login failure
+            NotificationManager.success('Login successful!') // Displaying success notification
         } catch (e){
+            if(e.response.status === 401){
+                NotificationManager.error('Invalid credentials, please try again!') // Displaying error notification
+            } else if (e.request) {
+                NotificationManager.error('Server error, please try again later!') // Displaying error notification
+            } else {
+                console.log(e) // Logging any errors that occur during the request
+                NotificationManager.error('An error occurred, please try again later!') // Displaying error notification
+            }
             console.log(e) // Logging any errors that occur during the request
         }
     }
