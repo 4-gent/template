@@ -65,7 +65,7 @@ frontend
 
 ### How to Get It Running
 
-1. **`cd`** into the `radiohost` folder.
+1. **`cd`** into the `frontend` folder.
 
 2. Run **`yarn install`** (**`sudo yarn install`** on Unix-based systems) to download packages specified in `package.json`.
 
